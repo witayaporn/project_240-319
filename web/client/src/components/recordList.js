@@ -9,10 +9,10 @@ export default function RecordList() {
   useEffect(() => {
     async function fetchRecords() { // เปลี่ยนชื่อฟังก์ชันเป็น fetchRecords
       try {
-        const socket = io("http://localhost:27017", {
+        const socket = io("http://172.16.100.9:5000", {
             withCredentials: true,
         });
-        let response = await fetch(`http://localhost:27017/record/`);
+        let response = await fetch(`http://172.16.100.9:5000/record/`);
         if (!response.ok) {
           const message = `error: ${response.statusText}`;
           window.alert(message);
