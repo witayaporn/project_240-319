@@ -5,7 +5,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server , {
   cors: {
-    origin: "http://localhost:3000", // แทนที่ด้วยโดเมนของเว็บไคลเอนต์ของคุณ
+    origin: "http://172.16.100.9:3000", // แทนที่ด้วยโดเมนของเว็บไคลเอนต์ของคุณ
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -13,7 +13,7 @@ const io = socketIo(server , {
 
 const cors = require("cors");
 require("dotenv").config({ path: "./.env" });
-const port = process.env.PORT || 27017;
+const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(require("./routes/record"));
