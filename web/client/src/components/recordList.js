@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
+
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
@@ -7,14 +9,23 @@ export default function RecordList() {
   useEffect(() => {
     async function fetchRecords() { // เปลี่ยนชื่อฟังก์ชันเป็น fetchRecords
       try {
+        const socket = io("http://localhost:27017", {
+            withCredentials: true,
+        });
         let response = await fetch(`http://localhost:27017/record/`);
         if (!response.ok) {
           const message = `error: ${response.statusText}`;
           window.alert(message);
           return;
         }
-        const data = await response.json(); // เปลี่ยนชื่อตัวแปรเป็น data
-        setRecords(data);
+        socket.on("recordData", (data) => {
+            // รับข้อมูลจาก WebSocket Server และทำอะไรกับข้อมูลตามที่คุณต้องการ
+            console.log(data);
+            setRecords(data); // ตัวอย่างการอัปเดตข้อมูล records
+        });
+        return () => {
+            socket.disconnect();
+        };
       } catch (error) {
         console.error("error:", error);
       }
@@ -41,8 +52,8 @@ export default function RecordList() {
           </tr>
         </thead>
         <tbody>
-          {records.map((record) => (
-            <tr key={record.id}>
+          {records.map(record => (
+            <tr key={record._id}>
               <td>{record._sid}</td>
               <td>{record._datetime}</td>
               <td>{record._weight}</td>
