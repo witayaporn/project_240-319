@@ -9,7 +9,7 @@ export default function RecordList() {
   useEffect(() => {
     async function fetchRecords() { // เปลี่ยนชื่อฟังก์ชันเป็น fetchRecords
       try {
-        const socket = io("https://server.243-family.cloud", {
+        const socket = io("http://172.16.100.9:5000", {
             withCredentials: true,
         });
         socket.on("recordData", (data) => {
