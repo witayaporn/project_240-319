@@ -9,15 +9,15 @@ export default function RecordList() {
   useEffect(() => {
     async function fetchRecords() { // เปลี่ยนชื่อฟังก์ชันเป็น fetchRecords
       try {
-        const socket = io("whinfo.243-family.cloud:5000", {
+        const socket = io("http://172.16.100.9:5000", {
             withCredentials: true,
         });
-        //let response = await fetch(`http://172.16.100.9:5000/record/`);
-        //if (!response.ok) {
-          // message = `error: ${response.statusText}`;
-          //window.alert(message);
-          //return;
-        //}
+        let response = await fetch(`http://172.16.100.9:5000/record/`);
+        if (!response.ok) {
+          const message = `error: ${response.statusText}`;
+          window.alert(message);
+          return;
+        }
         socket.on("recordData", (data) => {
             // รับข้อมูลจาก WebSocket Server และทำอะไรกับข้อมูลตามที่คุณต้องการ
             console.log(data);
