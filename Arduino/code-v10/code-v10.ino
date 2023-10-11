@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "SparkFun_VL53L1X.h"
@@ -9,12 +10,19 @@
 #include <Keypad_I2C.h>
 #include <Keypad.h>
 #include <EEPROM.h>
+#include <SoftwareSerial.h>
 
 #define buzzer 3
 #define lcdAddress 0x27      // กำหนดขาต่อจอ LCD
 #define DS1307_ADDRESS 0x68  // I2C address for DS1307 RTC
 #define AVR
 #define I2CADDR 0x21
+
+const byte rxPin = 8;
+const byte txPin = 9;
+
+// Set up a new SoftwareSerial object
+SoftwareSerial ser (rxPin, txPin);
 
 const byte ROWS = 4;  // กำหนดจำนวนของ Rows
 const byte COLS = 4;  // กำหนดจำนวนของ Columns
@@ -84,6 +92,9 @@ void setup() {
   lcd.clear();
 
   pinMode(buzzer, OUTPUT);
+  pinMode(rxPin, INPUT);
+  pinMode(txPin, OUTPUT);
+  ser.begin(115200);
 
   distanceSensor.begin();
 
@@ -416,6 +427,9 @@ bool input_sid(int avg_distance, float avg_weight) {
       displayConfirm(avg_distance, avg_weight, 'i', 1);
       displayConfirm(avg_distance, avg_weight, 'r', 1);
       displayConfirm(avg_distance, avg_weight, 'm', 1);
+      ser.println(sid);
+      ser.println(avg_weight);
+      ser.println(avg_distance);
       tone(buzzer, 4700, 200);
       delay(150);
       digitalWrite(buzzer, LOW);
