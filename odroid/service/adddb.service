@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=%i
-WorkingDirectory=/home/%i/project_240-319/odroid/python/
+User=root
+WorkingDirectory=/home/witayaporn/project_240-319/odroid/python/
 ExecStart=/usr/bin/python3 senttodb.py
 
 [Install]
