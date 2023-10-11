@@ -1,0 +1,4 @@
+dnspython==2.4.2
+pymongo==4.5.0
+pyserial==3.5
+pytz==2023.3.post1

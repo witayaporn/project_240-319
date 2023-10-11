@@ -56,7 +56,7 @@ int sensorHeight = 202;
 float weight;
 
 unsigned long last_time = 0;
-unsigned long period = 380;
+unsigned long period = 1000;
 
 unsigned long last_time_2 = 0;
 
@@ -482,13 +482,14 @@ void online() {
 
   //Serial.println(distance);
   if (distance > 120) {
+    delay(3000);
     int sum_distance = 0;
     int sum_weight = 0;
     for (int i = 0; i < 5; i++) {
       while (i < 5) {
         unsigned long current_time_2 = millis();
         weight = measureWeight();
-        if (current_time_2 - last_time_2 >= 500) {
+        if (current_time_2 - last_time_2 >= 1000) {
           distance = measureDistance();
           displayDistance(distance, weight);
           sum_distance = sum_distance + distance;

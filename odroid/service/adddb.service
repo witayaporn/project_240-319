@@ -1,0 +1,12 @@
+[Unit]
+Description=python sent id weight height datetime to database
+After=network.target
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/home/%i/project_240-319/odroid/python/
+ExecStart=/usr/bin/python3 senttodb.py
+
+[Install]
+WantedBy=multi-user.target
