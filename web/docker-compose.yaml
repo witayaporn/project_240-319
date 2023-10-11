@@ -2,6 +2,7 @@ version: "3.8"
 services:
   server:
     container_name: server
+    restart: always
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -15,6 +16,7 @@ services:
   web:
     container_name: web
     stdin_open: true
+    restart: always
     build:
       context: ./client
       dockerfile: Dockerfile

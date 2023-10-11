@@ -12,7 +12,7 @@ export default function RecordList() {
         const socket = io("http://172.16.100.9:5000", {
             withCredentials: true,
         });
-        let response = await fetch(`http://172.16.100.9:5000/record/`);
+        let response = await fetch(`https://172.16.100.9:5000/record/`);
         if (!response.ok) {
           const message = `error: ${response.statusText}`;
           window.alert(message);
@@ -20,7 +20,7 @@ export default function RecordList() {
         }
         socket.on("recordData", (data) => {
             // รับข้อมูลจาก WebSocket Server และทำอะไรกับข้อมูลตามที่คุณต้องการ
-            console.log(data);
+            //console.log(data);
             setRecords(data); // ตัวอย่างการอัปเดตข้อมูล records
         });
         return () => {
