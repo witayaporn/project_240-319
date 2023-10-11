@@ -5,7 +5,7 @@ const app = express();
 const server = https.createServer(app);
 const io = socketIo(server , {
   cors: {
-    origin: "https://whinfo.243-family.cloud", // แทนที่ด้วยโดเมนของเว็บไคลเอนต์ของคุณ
+    origin: "whinfo.243-family.cloud:3000", // แทนที่ด้วยโดเมนของเว็บไคลเอนต์ของคุณ
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -14,9 +14,9 @@ const io = socketIo(server , {
 const cors = require("cors");
 require("dotenv").config({ path: "./.env" });
 const port = process.env.PORT || 5000;
-app.use(cors());
-app.use(express.json());
-app.use(require("./routes/record"));
+//app.use(cors());
+//app.use(express.json());
+//app.use(require("./routes/record"));
 // get driver connection
 const dbo = require("./db/conn");
 
