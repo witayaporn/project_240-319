@@ -5,7 +5,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server , {
   cors: {
-    origin: "https://172.16.100.9:3000", // แทนที่ด้วยโดเมนของเว็บไคลเอนต์ของคุณ
+    origin: "https://whinfo.243-family.cloud", // แทนที่ด้วยโดเมนของเว็บไคลเอนต์ของคุณ
     methods: ["GET", "POST"],
     credentials: true,
   },
