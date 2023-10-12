@@ -9,7 +9,7 @@ while(True) :
     serialInst = serial.Serial()
 
     # ตั้งค่า MongoDB connection
-    client = pymongo.MongoClient("mongodb://root:161145@172.16.100.9")  # เปลี่ยน URL ของ MongoDB ตามที่คุณใช้
+    client = pymongo.MongoClient("mongodb://root:161145@4e46eeb321f6c7aa.sn.mynetname.net:27017")  # เปลี่ยน URL ของ MongoDB ตามที่คุณใช้
     db = client["project"]  # เปลี่ยนชื่อฐานข้อมูลตามที่คุณต้องการ
     collection = db["students"]  # เปลี่ยนชื่อคอลเลกชันตามที่คุณต้องการ
 
